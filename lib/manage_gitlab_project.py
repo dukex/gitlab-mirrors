@@ -46,7 +46,8 @@ git=gitlab.Gitlab(gitlab_url,token_secret)
 def findgroup(gname):
   #Locate the group
   page=1
-  while len(git.getGroups(page=page)) > 0:
+  groups = git.getGroups(page=page)
+  while groups && len(groups) > 0:
     for group in git.getGroups(page=page):
       if group['name'] == gname:
         return group
